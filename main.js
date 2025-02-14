@@ -57,7 +57,7 @@ function hookViewStateChanged(view, onBeforeStateChange, onAfterStateChange) {
     function wrapper() {
         onBeforeStateChange(view);
         const r = original.apply(this, arguments);
-        if (typeof r.then === "function") {
+	    if (typeof r === "object" && typeof r.then === "function") {
             r.then(() => {
                 onAfterStateChange(view);
             });
